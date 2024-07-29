@@ -1,93 +1,102 @@
-source control git pushed from local machine to sentralized locatin liek github
-can automaticly deply through process CI/CD continues integration and deployment 
+## CI/CD Workflow Overview
 
-- might not want every commit deyployed 
-    - signal when you want comits to be deyloped or use Dev and main branch versions 
+### Local Development
+1. Code locally on the `dev` branch.
+2. Commit changes to the `dev` branch.
+3. Push the `dev` branch to a centralized server like GitHub.
 
-code localy on dev > commit changes > push to centralized server > submit pull request to merge dev branch to main > review and confierm > changes on server made automaticly 
-### CI/CD Workflow Overview
+### Pull Request and Code Review
+1. Submit a pull request to merge the `dev` branch into the `main` branch.
+2. Review and confirm the pull request.
 
-1. **Local Development**:
-    - Code locally on the `dev` branch.
-    - Commit changes to the `dev` branch.
-    - Push the `dev` branch to a centralized server like GitHub.
+### Automated Deployment
+1. Use AWS CodePipeline to automate the deployment process.
+2. Configure the pipeline to trigger deployments when changes are merged into the `main` branch.
 
-2. **Pull Request and Code Review**:
-    - Submit a pull request to merge the `dev` branch into the `main` branch.
-    - Review and confirm the pull request.
+### Notes
+- Not every commit should be deployed automatically.
+- Signal when you want commits to be deployed or use `dev` and `main` branch versions.
 
-3. **Automated Deployment**:
-    - Use AWS CodePipeline to automate the deployment process.
-    - Configure the pipeline to trigger deployments when changes are merged into the `main` branch.
+### Full Workflow
+1. Code locally on `dev`.
+2. Commit changes.
+3. Push to centralized server.
+4. Submit pull request to merge `dev` to `main`.
+5. Review and confirm.
+6. Changes on server are made automatically.
 
-can be done with AWS pipeline 
-https://aws.amazon.com/codepipeline/
-- pipeline when the output of one step goes into the input of the next process
-### Configuring AWS CodePipeline
+## Configuring AWS CodePipeline
 
-1. **Create an AWS CodePipeline**:
-    - Go to the [AWS CodePipeline console](https://aws.amazon.com/codepipeline/).
-    - Create a new pipeline.
+### Create an AWS CodePipeline
+1. Go to the [AWS CodePipeline console](https://aws.amazon.com/codepipeline/).
+2. Create a new pipeline.
 
-2. **Define Source Stage**:
-    - Set up the source stage to monitor your GitHub repository.
-    - Configure the pipeline to trigger on changes to the `main` branch.
+### Define Source Stage
+1. Set up the source stage to monitor your GitHub repository.
+2. Configure the pipeline to trigger on changes to the `main` branch.
 
-3. **Add Build Stage**:
-    - Use AWS CodeBuild to build and test your application.
-    - Configure the build stage to run your test suite.
+### Add Build Stage
+1. Use AWS CodeBuild to build and test your application.
+2. Configure the build stage to run your test suite.
 
-4. **Add Deploy Stage**:
-    - Use AWS CodeDeploy or other deployment services to deploy your application.
-    - Define the deployment configuration and environment.
+### Add Deploy Stage
+1. Use AWS CodeDeploy or other deployment services to deploy your application.
+2. Define the deployment configuration and environment.
 
+## Installing Python, pip, and Git
 
-#### Installing Python, pip, and Git
-
-1. **Check Python and pip versions**:
-    - In Bash:
-        bash
-        pip --version
-        Output:
-        pip 24.1.2
-        
-    - In Command Prompt (CMD):
-        cmd
-        python --version
-        Output:  
-        Python 3.11.5
-        
-
-
-Virtual env 
-- allow you to list dependinces to share and install on individual servers to always have matching enviorments
-requirments.txt 
-
-#### Setting Up a Virtual Environment
-
-1. **Create a virtual environment**:
+### Check Python and pip versions
+1. In Bash:
     bash
-    python -m venv venv  
-    or 
-    python -m venv .venv    // the dot makes it a hiden folder can see with comand ls -a 
-    ** we are naming it .venv we can name it arbitrarily 
-2. **Activate the virtual environment**:
-    - On Windows:
-        cmd
-        venv\Scripts\activate
-    -On Bash 
-        in folder outside of venv 
-         . venv/Scripts/activate
-         ** should see (venv)
+    pip --version
+    
+2. In Command Prompt (CMD):
+    cmd
+    python --version
+    
+## Setting Up a Virtual Environment
+### Create a virtual environment
+1. In Bash:
+    bash
+    python -m venv venv
+    
+    or
+    bash
+    python -m venv .venv  # The dot makes it a hidden folder; can see with command ls -a
+    
+    **We are naming it .venv; it can be named arbitrarily.**
 
-******* type pip freeze you should only see packages in that enviorment not gloable 
-to swtich out of env 
-deactivate 
-          
-3. **List dependencies in `requirements.txt`**:
+### Activate the virtual environment
+1. On Windows:
+    cmd
+    venv\Scripts\activate
+    
+2. On Bash:
+    - In the folder outside of `venv`:
+    bash
+    . venv/Scripts/activate
+    
+    **You should see (venv)**
+
+### Verify virtual environment
+1. Type `pip freeze` to see only packages in that environment, not global packages.
+
+### Deactivate virtual environment
+1. Type:
+    bash
+    deactivate
+    
+
+### List dependencies in `requirements.txt`
+1. To push the dependencies to the `requirements.txt` file:
     bash
     pip freeze > requirements.txt
-4. **Install dependencies from `requirements.txt`**:
+    
+2. To see what's in the requirements file, use:
+    bash
+    cat requirements.txt
+    
+### Install dependencies from `requirements.txt`
+1. Use:
     bash
     pip install -r requirements.txt
-    

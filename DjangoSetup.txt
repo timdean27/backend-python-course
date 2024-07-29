@@ -1,0 +1,28 @@
+- pip install django
+command to view subcommands of django 
+- django-admin
+
+to start and name project 
+- django-admin startproject projectName
+
+
+to run server 
+- python manage.py runserver
+
+to change local server 
+- python manage.py runserver 1234
+
+
+**** Creating Views ****
+1. - create a views.py page
+2. - create a url paht in urls.py
+    example for home page we can write 
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.index)
+]
+
+3. import our views file to urls
+from projectName import views
+
+4. deffine what our view is our views.index in the views file

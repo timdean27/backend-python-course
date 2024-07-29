@@ -1,0 +1,8 @@
+page request structer 
+example : [29/Jul/2024 11:21:08] "GET / HTTP/1.1" 200 10629
+ - [29/Jul/2024 11:21:08] TimeStamp of the request
+ - GET is the method used to request data 
+ - The / indicates the root resource of the server. It typically represents the homepage of a website.
+ - HTTP/1.1 This specifies the version of the HTTP protocol being used. 
+ - The status code 200 indicates that the request was successful
+ - 10629 represents the size of the response body in bytes. It indicates how much data was sent back to the client
