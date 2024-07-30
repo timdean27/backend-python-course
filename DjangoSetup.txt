@@ -14,8 +14,8 @@ to change local server
 
 
 **** Creating Views ****
-1. - create a views.py page
-2. - create a url paht in urls.py
+1. create a views.py page
+2. create a url paht in urls.py
     example for home page we can write 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,3 +26,6 @@ urlpatterns = [
 from projectName import views
 
 4. deffine what our view is our views.index in the views file
+
+
+*** Creating Templete***
