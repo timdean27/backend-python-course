@@ -1,0 +1,23 @@
+Databases in Django
+
+Two Ways of Interacting with Databases
+
+1. ORM (Object-Relational Mapper)
+   - An ORM allows you to interact with the database using Python code instead of writing raw SQL queries.
+   - Django’s ORM automatically maps models to database tables and handles CRUD (Create, Read, Update, Delete) operations.
+
+2. Direct SQL Interaction
+   - You can execute raw SQL queries directly on the database.
+   - This method is more flexible but requires a deeper understanding of SQL and the database schema.
+
+Migrations
+
+- Migrations describe the structure of the database and track changes over time.
+- They allow you to evolve your database schema as your application requirements change without losing data.
+- Migrations are created automatically by Django when you make changes to your models, and can be applied to the database using commands like `makemigrations` and `migrate`.
+
+Models
+
+- Models describe the data structure and define the schema for your database.
+- Each model maps to a single table in the database, and each attribute of the model corresponds to a database column.
+- Models also define the behavior of your data through methods, validation, and relationships.

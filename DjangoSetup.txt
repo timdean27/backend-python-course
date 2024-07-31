@@ -1,31 +1,145 @@
-- pip install django
-command to view subcommands of django 
-- django-admin
+# Django API Setup with SQLite Notes
 
-to start and name project 
-- django-admin startproject projectName
+**Installing Django**
+- Command: `pip install django`
+
+**Viewing Django Admin Subcommands**
+- Command: `django-admin`
+
+**Starting a New Project**
+- Command: `django-admin startproject projectName`
+
+**Running the Server**
+- Command: `python manage.py runserver`
+
+**Changing Local Server Port**
+- Command: `python manage.py runserver 1234`
+
+**Creating a Superuser**
+1. Create a superuser to access the Django admin site:
+    bash
+    python manage.py createsuperuser
+    
+2. Follow the prompts to enter a username, email, and password for the superuser.
+
+**Creating Views**
+1. Create a `views.py` file in your app directory.
+2. Define URL paths in `urls.py` of your app:
+    Example for home page:
+    python
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('', views.index, name='index'),
+    ]
+    
+3. Import the `views` file into the main `urls.py` of your project:
+    python
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('', include('your_app_name.urls')),  # Replace 'your_app_name' with the actual name of your app
+    ]
+    
+4. Define the view function in `views.py`:
+    python
+    from django.http import HttpResponse
+
+    def index(request):
+        return HttpResponse("Hello, world!")
+    
+
+**Creating Models**
+1. Define your data models in `models.py`:
+    python
+    from django.db import models
+
+    class Item(models.Model):
+        name = models.CharField(max_length=100)
+        description = models.TextField()
+
+        def __str__(self):
+            return self.name
+    
+
+2. Run migrations to create the database schema:
+    bash
+    python manage.py makemigrations
+    python manage.py migrate
+    
+*** python manage.py sqlmigrate projectName 0001
+
+this is the command shows you the SQLite formate of the migration in this case 0001
+
+**Creating Serializers**
+1. Install Django REST framework if not already installed:
+    bash
+    pip install djangorestframework
+    
+
+2. Add `'rest_framework'` to `INSTALLED_APPS` in `settings.py`:
+    python
+    INSTALLED_APPS = [
+        ...
+        'rest_framework',
+        ...
+    ]
+    
+
+3. Create a `serializers.py` file in your app directory:
+    python
+    from rest_framework import serializers
+    from .models import Item
+
+    class ItemSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Item
+            fields = ['id', 'name', 'description']
+    
+
+**Creating API Views**
+1. Create API views in `views.py`:
+    python
+    from rest_framework import viewsets
+    from .models import Item
+    from .serializers import ItemSerializer
+
+    class ItemViewSet(viewsets.ModelViewSet):
+        queryset = Item.objects.all()
+        serializer_class = ItemSerializer
+    
+
+2. Add API URLs in `urls.py` of your app:
+    python
+    from django.urls import path, include
+    from rest_framework.routers import DefaultRouter
+    from .views import ItemViewSet
+
+    router = DefaultRouter()
+    router.register(r'items', ItemViewSet)
+
+    urlpatterns = [
+        path('', include(router.urls)),
+    ]
+    
+
+**Testing Your API**
+1. Run the Django development server:
+    bash
+    python manage.py runserver
+    
+
+2. Access the API endpoints in your browser or API client:
+    - List all items: `http://localhost:1234/items/`
+    - Retrieve a specific item: `http://localhost:1234/items/{id}/`
+
+**Additional Notes**
+- Ensure to configure any necessary settings in `settings.py` for database connection, security, and other configurations.
+- Consider adding authentication and permissions as needed for your API.
+- Review Django REST framework documentation for advanced features and best practices.
 
 
-to run server 
-- python manage.py runserver
-
-to change local server 
-- python manage.py runserver 1234
-
-
-**** Creating Views ****
-1. create a views.py page
-2. create a url paht in urls.py
-    example for home page we can write 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.index)
-]
-
-3. import our views file to urls
-from projectName import views
-
-4. deffine what our view is our views.index in the views file
-
-
-*** Creating Templete***
