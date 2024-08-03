@@ -6,3 +6,8 @@ example : [29/Jul/2024 11:21:08] "GET / HTTP/1.1" 200 10629
  - HTTP/1.1 This specifies the version of the HTTP protocol being used. 
  - The status code 200 indicates that the request was successful
  - 10629 represents the size of the response body in bytes. It indicates how much data was sent back to the client
+
+
+ CRUD
+ create, read, update, and delete
+

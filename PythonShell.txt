@@ -1,0 +1,30 @@
+how to use Python Shell to work with data
+we can typicaly use a python shell by just typing the command 
+- python
+
+but with django manage we can work within 
+- python manage.py shell
+
+we run from mainProject.models import File
+to import the Files table into the shell
+
+can run File.objects.all() - will get a queryset which retunrs a list of objects of all recoreds
+which should return all objects from the files model which is a table in SQL , all objects returned are recoreds in the table 
+
+we can intirate through the List 
+example:
+for file in File.objects.all():
+    print(file.name)
+
+
+you can get single file objects for example 
+File.objects.get(pk=1)
+
+you will be reutned the object with primary key value 1
+
+
+how to see all the atribuits of a paticular object 
+- we can assign the obecjts to a variabe
+fileOne = File.objects.get(pk=1)
+
+then say dir(fileOne)
