@@ -24,9 +24,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 SECRET_KEY = 'django-insecure-)v52$+9b^7qqj!deh5omzi8y%(%k5hk*3660y*2)%(#7t5&(o2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1' , 'localhost']
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'mainfilesproject-env.eba-7zswjxih.us-east-2.elasticbeanstalk.com']
 
 
 # Application definition
@@ -118,6 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

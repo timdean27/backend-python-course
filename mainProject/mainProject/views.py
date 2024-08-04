@@ -1,25 +1,23 @@
-from django.http import HttpResponse, Http404
+from django.http import Http404
 from django.shortcuts import redirect, render
-from .forms import UploadForm
+
+from mainProject.forms import UploadForm
 from .models import File
 
 def index(request):
-    return HttpResponse('Hello There')
-
+    return render(request, 'files/index.html')
 
 def files(request):
     data = File.objects.all()
-    return render(request , 'files/files.html' , {'files': data , 'form' : UploadForm})
+    return render(request, 'files/files.html', {'files': data, 'form': UploadForm})
 
-def file(request , file_id):
-    print('File ID:', file_id)
+def file(request, file_id):
     f = File.objects.get(pk=file_id)
-    # run interation for what we want and if nothing is returned defualt None
     if f:
-        return render(request , 'files/file.html', {'file': f})
+        return render(request, 'files/file.html', {'file': f})
     else:
-        raise Http404('File does nto exist')
-    
+        raise Http404('File does not exist.')
+
 def edit(request, file_id):
     name = request.POST.get('name')
     file_type = request.POST.get('type')
@@ -45,5 +43,5 @@ def delete(request, file_id):
 def upload(request):
     form = UploadForm(request.POST, request.FILES)
     if form.is_valid():
-            form.save()
+        form.save()
     return redirect(files)
