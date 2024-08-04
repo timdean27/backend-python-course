@@ -1,4 +1,4 @@
-#!C:\Users\timde\Documents\CodeVault\PythonProjects\BackendPyhtonCourse\venv\Scripts\python.exe
+#!C:\Users\timde\Documents\CodeVault\PythonProjects\BackendPyhtonCourse\mainProject\venv\Scripts\python.exe
 
 import sys
 import json
