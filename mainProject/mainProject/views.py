@@ -9,7 +9,8 @@ def index(request):
 
 def files(request):
     data = File.objects.all()
-    return render(request, 'files/files.html', {'files': data, 'form': UploadForm})
+    form = UploadForm()
+    return render(request, 'files/files.html', {'files': data, 'form': form})
 
 def file(request, file_id):
     f = File.objects.get(pk=file_id)
