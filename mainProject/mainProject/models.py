@@ -2,7 +2,6 @@ from django.db import models
 
 class File(models.Model):
     name = models.CharField(max_length=1024, default='default_name')
-    file_type = models.CharField(max_length=10, default='default_type')
     upload_timestamp = models.DateTimeField(auto_now_add=True)
     file = models.FileField()
 
