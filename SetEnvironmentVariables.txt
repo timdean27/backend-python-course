@@ -1,0 +1,11 @@
+to set the variables 
+export RDS_DB_NAME=
+export RDS_USERNAME=
+export RDS_PASSWORD=
+export RDS_HOST=
+
+to check the variables 
+echo $RDS_DB_NAME
+echo $RDS_USERNAME
+echo $RDS_PASSWORD
+echo $RDS_HOST
