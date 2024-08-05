@@ -1,0 +1,27 @@
+This is a good video for setting up IAM role with ec2 Service
+https://youtu.be/cfO5mfI_EdM?feature=shared
+Create the EC2 Instance Profile
+
+Go to the IAM Management Console.
+
+Create a Role:
+
+Roles
+
+Create role
+
+Choose AWS service
+
+Select EC2 for the service that will use this role.
+
+Next: Permissions.
+
+AWSElasticBeanstalkWebTier
+
+AWSElasticBeanstalkWorkerTier
+
+AWSElasticBeanstalkMulticontainerDocker
+
+Next -Name the role example "aws-elasticbeanstalk-ec2-role"
+
+Create
