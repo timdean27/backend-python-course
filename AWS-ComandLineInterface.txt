@@ -1,0 +1,59 @@
+pip install awsebcli
+
+creat IAM user in this case admin
+
+give permisions for use of Elastic BeanStalk
+
+AdministratorAccess-AWSElasticBeanstalk
+AmazonS3FullAccess
+AWSElasticBeanstalkMulticontainerDocker
+AWSElasticBeanstalkWebTier
+AWSElasticBeanstalkWorkerTier
+
+
+check if eb is loaded
+
+eb --version
+
+and to get 
+
+eb init
+used 14) us-east-2 : US East (Ohio)
+Select an application to use
+
+1) mainFilesProject
+2) [ Create new Application ]
+(default is 2): 1
+
+Do you wish to continue with CodeCommit? (Y/n): n
+
+cd into mainProject
+
+ls -a 
+to see hiden folders you should see 
+.elasticbeanstalk
+
+which should contain 
+config.yml
+
+
+
+to deploy on AWS BeanStalk
+first create a new zip file running 
+python runDeploymentZip.py
+
+then once created run
+eb deploy
+
+expected responce 
+Creating application version archive "app-240806_121616403475".
+Uploading: [##################################################] 100% Done...
+2024-08-06 16:16:58    INFO    Environment update is starting.      
+2024-08-06 16:17:06    INFO    Deploying new version to instance(s).
+2024-08-06 16:17:14    INFO    Instance deployment successfully generated a 'Procfile'.
+2024-08-06 16:17:23    INFO    Instance deployment completed successfully.
+2024-08-06 16:17:27    INFO    New application version was deployed to running EC2 instances.
+2024-08-06 16:17:27    INFO    Environment update completed successfully.
+
+to open run
+ed open

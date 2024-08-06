@@ -1,0 +1,13 @@
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+
+static
+SetEnvironmentVariables
+
+admin_accessKeys.csv
+
+SetEnvironmentVariables.txt

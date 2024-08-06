@@ -1,8 +1,8 @@
 to set the variables 
-export RDS_DB_NAME=
+export RDS_DB_NAME=postgres
 export RDS_USERNAME=
 export RDS_PASSWORD=
-export RDS_HOST=
+export RDS_HOST=files-db.cni68o4kavb7.us-east-2.rds.amazonaws.com
 
 to check the variables 
 echo $RDS_DB_NAME
