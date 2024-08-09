@@ -1,0 +1,7 @@
+To install django-storages and boto3, you can use the following command in your terminal:
+
+bash
+pip install django-storages boto3
+
+This will install both django-storages, which is a Django library for managing storage backends, 
+and boto3, which is the Amazon Web Services (AWS) SDK for Python.
