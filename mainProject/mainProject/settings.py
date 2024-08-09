@@ -40,7 +40,7 @@ SECRET_KEY = 'django-insecure-)v52$+9b^7qqj!deh5omzi8y%(%k5hk*3660y*2)%(#7t5&(o2
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'mainfilesproject-env.eba-7zswjxih.us-east-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'Mainfilesproject2-env.eba-mabpstki.us-east-2.elasticbeanstalk.com']
 
 
 # Application definition
@@ -93,6 +93,12 @@ DB_USERNAME = os.environ.get('RDS_USERNAME')
 DB_PASSWORD = os.environ.get('RDS_PASSWORD')
 DB_HOST = os.environ.get('RDS_HOST')
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 DATABASES = {
@@ -102,7 +108,6 @@ DATABASES = {
         'USER': DB_USERNAME,
         'PASSWORD': DB_PASSWORD,
         'HOST': DB_HOST,
-        'PORT': '5432',
     }
 }
 
@@ -142,10 +147,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = 'static'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATIC_URL = AWS_S3_CUSTOM_DOMAIN + '/static/'
-# STATIC_ROOT = AWS_S3_CUSTOM_DOMAIN
+
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+STATIC_ROOT = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
