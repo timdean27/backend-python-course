@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.shortcuts import redirect, render
-
+from django.conf import settings
 from mainProject.forms import UploadForm
 from .models import File
 
@@ -44,5 +44,7 @@ def delete(request, file_id):
 def upload(request):
     form = UploadForm(request.POST, request.FILES)
     if form.is_valid():
+        settings.AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400', 
+        'ContentDisposition': 'attachment; filename="' + request.FILES['file'].name + '"'}
         form.save()
     return redirect(files)
