@@ -4,6 +4,9 @@ export RDS_USERNAME=master
 export RDS_PASSWORD=Fishboy27!
 export RDS_HOST=files-db.cni68o4kavb7.us-east-2.rds.amazonaws.com
 
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+
 to check the variables 
 echo $RDS_DB_NAME
 echo $RDS_USERNAME

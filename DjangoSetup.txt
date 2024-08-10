@@ -1,4 +1,4 @@
-# Django API Setup with SQLite Notes
+
 
 **Installing Django**
 - Command: `pip install django`
@@ -10,6 +10,8 @@
 - Command: `django-admin startproject projectName`
 
 **Running the Server**
+    python manage.py makemigrations
+    python manage.py migrate
 - Command: `python manage.py runserver`
 
 **Changing Local Server Port**
