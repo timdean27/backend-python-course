@@ -1,0 +1,59 @@
+**JWT Tokens (JSON Web Tokens)**:
+- **Purpose**: JWT tokens are used for secure transmission of information between parties as a JSON object.
+ They are commonly used for authentication and authorization in web applications.
+- **Steps**:
+  - Install the necessary package:
+    bash
+    pip install djangorestframework-simplejwt
+    
+  - Update `settings.py` to include JWT authentication:
+    python
+    REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework_simplejwt.authentication.JWTAuthentication',
+        ),
+    }
+    
+  - Add JWT views to your `urls.py`:
+    python
+    from rest_framework_simplejwt.views import (
+        TokenObtainPairView,
+        TokenRefreshView,
+    )
+
+    urlpatterns = [
+        path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+        path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    ]
+
+
+    add dercorator around your views
+    @permission_classes([IsAuthenticated])
+    import
+    from rest_framework.decorators import permission_classes
+    from rest_framework.permission import IsAuthenticated
+
+  - **Token Usage**: 
+    - Obtain a token by sending a POST request with valid credentials to `/api/token/`.
+    - Use the token in the Authorization header for authenticated API requests:
+      
+      Authorization: Bearer <your_token>
+      
+
+You can now copy this content into your `.txt` file.
+
+
+Getting new secrect Key inside python django
+run command in pyhton terminal
+from django.core.management.utils import get_random_secret_key
+new_secret_key = get_random_secret_key()
+print(new_secret_key)
+
+save new new in environment
+
+or run a python file we set up does same 
+getSecretKey.py file 
+
+be sure to copy tokens and set variables 
+# export DJANGO_SECRET_KEY=''
+# export SECRET_JWT=''

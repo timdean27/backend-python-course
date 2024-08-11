@@ -1,2 +1,29 @@
-dowload 
-pip install psycopg2-binary
+# Setting Up PostgreSQL with Django
+
+## 1. Install PostgreSQL
+- Download PostgreSQL from the official website: https://www.postgresql.org/download/
+- Follow the installation instructions specific to your operating system.
+- During installation, set a password for the default "postgres" user.
+- Note down the port number (default is 5432), and the database name (default is "postgres").
+
+## 2. Install psycopg2-binary
+- psycopg2-binary is the PostgreSQL adapter for Python, required for Django to interact with PostgreSQL.
+- Install it using pip:
+  ```bash
+  pip install psycopg2-binary
+
+
+in settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'your_database_name',
+        'USER': 'your_postgres_username',
+        'PASSWORD': 'your_postgres_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+apply migrations
+python manage.py migrate

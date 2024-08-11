@@ -1,4 +1,5 @@
-Here's the full content that you can copy and paste into your `.txt` file:
+Link for Simple JWT
+https://django-rest-framework-simplejwt.readthedocs.io/en/latest/
 
 **REST API Setup in Django**
 
@@ -66,46 +67,3 @@ which can then be easily rendered in a RESTful API.
   ]
   
 
-**JWT Tokens (JSON Web Tokens)**:
-- **Purpose**: JWT tokens are used for secure transmission of information between parties as a JSON object.
- They are commonly used for authentication and authorization in web applications.
-- **Steps**:
-  - Install the necessary package:
-    bash
-    pip install djangorestframework-simplejwt
-    
-  - Update `settings.py` to include JWT authentication:
-    python
-    REST_FRAMEWORK = {
-        'DEFAULT_AUTHENTICATION_CLASSES': (
-            'rest_framework_simplejwt.authentication.JWTAuthentication',
-        ),
-    }
-    
-  - Add JWT views to your `urls.py`:
-    python
-    from rest_framework_simplejwt.views import (
-        TokenObtainPairView,
-        TokenRefreshView,
-    )
-
-    urlpatterns = [
-        path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-        path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    ]
-
-
-    add dercorator around your views
-    @permission_classes([IsAuthenticated])
-    import
-    from rest_framework.decorators import permission_classes
-    from rest_framework.permission import IsAuthenticated
-
-  - **Token Usage**: 
-    - Obtain a token by sending a POST request with valid credentials to `/api/token/`.
-    - Use the token in the Authorization header for authenticated API requests:
-      
-      Authorization: Bearer <your_token>
-      
-
-You can now copy this content into your `.txt` file.
