@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from mainProject import viewsAPI  # Import viewsAPI for our API
 from rest_framework.urlpatterns import format_suffix_patterns
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,7 +33,10 @@ urlpatterns = [
     path('files/upload', views.upload, name='upload'),
     # now using viewsAPI for the api and leaving views for the html
     path('api/files/', viewsAPI.filesAPI, name='api_files'),
-    path('api/files/<int:file_id>/', viewsAPI.fileAPI, name='api_file_detail'), 
+    path('api/files/<int:file_id>/', viewsAPI.fileAPI, name='api_file_detail'),
+    # urls for auth tokens 
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'), 
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

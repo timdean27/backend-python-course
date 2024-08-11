@@ -1,13 +1,111 @@
-page request structer 
-example : [29/Jul/2024 11:21:08] "GET / HTTP/1.1" 200 10629
- - [29/Jul/2024 11:21:08] TimeStamp of the request
- - GET is the method used to request data 
- - The / indicates the root resource of the server. It typically represents the homepage of a website.
- - HTTP/1.1 This specifies the version of the HTTP protocol being used. 
- - The status code 200 indicates that the request was successful
- - 10629 represents the size of the response body in bytes. It indicates how much data was sent back to the client
+Here's the full content that you can copy and paste into your `.txt` file:
+
+**REST API Setup in Django**
+
+**REST**:  
+Representational State Transfer - a set of principles for designing networked applications. 
+RESTful services provide interoperability between different systems on the web.
+
+**API**:  
+Application Programming Interface - a set of rules and protocols for building and interacting with software applications. 
+APIs define how different software components should interact.
+
+**Installation**:
+- Install Django REST framework:  
+  bash
+  pip install djangorestframework
+  
+
+- In `settings.py`, add `'rest_framework'` to `INSTALLED_APPS`:
+  python
+  INSTALLED_APPS = [
+      'rest_framework',
+  ]
+  
+
+**Creating Serializers**:
+- **Purpose**: Serializers in Django REST Framework convert complex data types, such as Django models, into JSON, 
+which can then be easily rendered in a RESTful API.
+- **Example**:
+  python
+  from rest_framework import serializers
+  from .models import MyModel
+
+  class MyModelSerializer(serializers.ModelSerializer):
+      class Meta:
+          model = MyModel
+          fields = '__all__'
+  
+
+**Creating Views**:
+- **Purpose**: Views in Django REST Framework handle the logic for processing API requests and returning responses.
+- **Example**:
+  python
+  from rest_framework import viewsets
+  from .models import MyModel
+  from .serializers import MyModelSerializer
+
+  class MyModelViewSet(viewsets.ModelViewSet):
+      queryset = MyModel.objects.all()
+      serializer_class = MyModelSerializer
+  
+
+**URL Routing**:
+- **Purpose**: Define the API endpoints and map them to the appropriate views.
+- **Example**:
+  python
+  from django.urls import path, include
+  from rest_framework.routers import DefaultRouter
+  from .views import MyModelViewSet
+
+  router = DefaultRouter()
+  router.register(r'mymodels', MyModelViewSet)
+
+  urlpatterns = [
+      path('', include(router.urls)),
+  ]
+  
+
+**JWT Tokens (JSON Web Tokens)**:
+- **Purpose**: JWT tokens are used for secure transmission of information between parties as a JSON object.
+ They are commonly used for authentication and authorization in web applications.
+- **Steps**:
+  - Install the necessary package:
+    bash
+    pip install djangorestframework-simplejwt
+    
+  - Update `settings.py` to include JWT authentication:
+    python
+    REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework_simplejwt.authentication.JWTAuthentication',
+        ),
+    }
+    
+  - Add JWT views to your `urls.py`:
+    python
+    from rest_framework_simplejwt.views import (
+        TokenObtainPairView,
+        TokenRefreshView,
+    )
+
+    urlpatterns = [
+        path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+        path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    ]
 
 
- CRUD
- create, read, update, and delete
+    add dercorator around your views
+    @permission_classes([IsAuthenticated])
+    import
+    from rest_framework.decorators import permission_classes
+    from rest_framework.permission import IsAuthenticated
 
+  - **Token Usage**: 
+    - Obtain a token by sending a POST request with valid credentials to `/api/token/`.
+    - Use the token in the Authorization header for authenticated API requests:
+      
+      Authorization: Bearer <your_token>
+      
+
+You can now copy this content into your `.txt` file.
