@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from mainProject import views
+from mainProject import views #used for out HTML
 from django.conf import settings
 from django.conf.urls.static import static
+from mainProject import viewsAPI  # Import viewsAPI for our API
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,8 @@ urlpatterns = [
     path('files/edit/<int:file_id>/', views.edit, name='edit'),
     path('files/delete/<int:file_id>/', views.delete, name='delete'),
     path('files/upload', views.upload, name='upload'),
+    # now using viewsAPI for the api and leaving views for the html
+    path('api/files/', viewsAPI.filesAPI, name='api_files'),  # Use viewsAPI here
 ]
 
 if settings.DEBUG:
