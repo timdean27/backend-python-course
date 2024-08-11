@@ -20,6 +20,7 @@ from mainProject import views #used for out HTML
 from django.conf import settings
 from django.conf.urls.static import static
 from mainProject import viewsAPI  # Import viewsAPI for our API
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,8 +31,11 @@ urlpatterns = [
     path('files/delete/<int:file_id>/', views.delete, name='delete'),
     path('files/upload', views.upload, name='upload'),
     # now using viewsAPI for the api and leaving views for the html
-    path('api/files/', viewsAPI.filesAPI, name='api_files'),  # Use viewsAPI here
+    path('api/files/', viewsAPI.filesAPI, name='api_files'),
+    path('api/files/<int:file_id>/', viewsAPI.fileAPI, name='api_file_detail'), 
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
